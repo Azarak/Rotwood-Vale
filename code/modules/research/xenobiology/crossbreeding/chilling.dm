@@ -103,19 +103,7 @@ Chilling extracts:
 	if(A.outdoors)
 		to_chat(user, "<span class='warning'>[src] can't affect such a large area.</span>")
 		return
-	var/filtered = FALSE
-	for(var/turf/open/T in A)
-		var/datum/gas_mixture/G = T.air
-		if(istype(G))
-			G.assert_gas(/datum/gas/plasma)
-			G.gases[/datum/gas/plasma][MOLES] = 0
-			filtered = TRUE
-			G.garbage_collect()
-			T.air_update_turf()
-	if(filtered)
-		user.visible_message("<span class='notice'>Cracks spread throughout [src], and some air is sucked in!</span>")
-	else
-		user.visible_message("<span class='notice'>[src] cracks, but nothing happens.</span>")
+	user.visible_message("<span class='notice'>[src] cracks, but nothing happens.</span>")
 	..()
 
 /obj/item/slimecross/chilling/darkblue

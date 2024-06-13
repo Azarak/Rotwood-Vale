@@ -59,53 +59,6 @@
 /datum/computer_file/program/supermatter_monitor/ui_data()
 	var/list/data = get_header_data()
 
-	if(istype(active))
-		var/turf/T = get_turf(active)
-		if(!T)
-			active = null
-			refresh()
-			return
-		var/datum/gas_mixture/air = T.return_air()
-		if(!air)
-			active = null
-			return
-
-		data["active"] = TRUE
-		data["SM_integrity"] = active.get_integrity()
-		data["SM_power"] = active.power
-		data["SM_ambienttemp"] = air.temperature
-		data["SM_ambientpressure"] = air.return_pressure()
-		//data["SM_EPR"] = round((air.total_moles / air.group_multiplier) / 23.1, 0.01)
-		var/list/gasdata = list()
-
-
-		if(air.total_moles())
-			for(var/gasid in air.gases)
-				gasdata.Add(list(list(
-				"name"= air.gases[gasid][GAS_META][META_GAS_NAME],
-				"amount" = round(100*air.gases[gasid][MOLES]/air.total_moles(),0.01))))
-
-		else
-			for(var/gasid in air.gases)
-				gasdata.Add(list(list(
-					"name"= air.gases[gasid][GAS_META][META_GAS_NAME],
-					"amount" = 0)))
-
-		data["gases"] = gasdata
-	else
-		var/list/SMS = list()
-		for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
-			var/area/A = get_area(S)
-			if(A)
-				SMS.Add(list(list(
-				"area_name" = A.name,
-				"integrity" = S.get_integrity(),
-				"uid" = S.uid
-				)))
-
-		data["active"] = FALSE
-		data["supermatters"] = SMS
-
 	return data
 
 /datum/computer_file/program/supermatter_monitor/ui_act(action, params)

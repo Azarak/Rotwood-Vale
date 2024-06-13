@@ -163,17 +163,10 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 /turf/open/ChangeTurf(path, list/new_baseturfs, flags) //Resist the temptation to make this default to keeping air.
 	if ((flags & CHANGETURF_INHERIT_AIR) && ispath(path, /turf/open))
-		SSair.remove_from_active(src)
-		var/datum/gas_mixture/stashed_air = new()
-		stashed_air.copy_from(air)
 		. = ..()
 		if (!.) // changeturf failed or didn't do anything
-			QDEL_NULL(stashed_air)
 			return
 		var/turf/open/newTurf = .
-		newTurf.air.copy_from(stashed_air)
-		QDEL_NULL(stashed_air)
-		SSair.add_to_active(newTurf)
 	else
 		if(ispath(path,/turf/closed))
 			flags |= CHANGETURF_RECALC_ADJACENT
@@ -377,31 +370,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 //////Assimilate Air//////
 /turf/open/proc/Assimilate_Air()
-	var/turf_count = LAZYLEN(atmos_adjacent_turfs)
-	if(blocks_air || !turf_count) //if there weren't any open turfs, no need to update.
-		return
-
-	var/datum/gas_mixture/total = new//Holders to assimilate air from nearby turfs
-	var/list/total_gases = total.gases
-
-	for(var/T in atmos_adjacent_turfs)
-		var/turf/open/S = T
-		if(!S.air)
-			continue
-		var/list/S_gases = S.air.gases
-		for(var/id in S_gases)
-			ASSERT_GAS(id, total)
-			total_gases[id][MOLES] += S_gases[id][MOLES]
-		total.temperature += S.air.temperature
-
-	air.copy_from(total)
-
-	var/list/air_gases = air.gases
-	for(var/id in air_gases)
-		air_gases[id][MOLES] /= turf_count //Averages contents of the turfs, ignoring walls and the like
-
-	air.temperature /= turf_count
-	SSair.add_to_active(src)
+	return
 
 /turf/proc/ReplaceWithLattice()
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)

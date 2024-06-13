@@ -159,14 +159,6 @@
 	update_visuals()
 
 	current_cycle = times_fired
-	ImmediateCalculateAdjacentTurfs()
-	for(var/i in atmos_adjacent_turfs)
-		var/turf/open/enemy_tile = i
-		var/datum/gas_mixture/enemy_air = enemy_tile.return_air()
-		if(!excited && air.compare(enemy_air))
-			//testing("Active turf found. Return value of compare(): [is_active]")
-			excited = TRUE
-			SSair.active_turfs |= src
 
 /turf/open/proc/GetHeatCapacity()
 	. = air.heat_capacity()

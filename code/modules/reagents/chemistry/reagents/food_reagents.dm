@@ -427,13 +427,6 @@
 	if (!istype(T))
 		return
 	T.MakeSlippery(TURF_WET_LUBE, min_wet_time = 10 SECONDS, wet_time_to_add = reac_volume*2 SECONDS)
-	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
-	if(hotspot)
-		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles())
-		lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
-		lowertemp.react(src)
-		T.assume_air(lowertemp)
-		qdel(hotspot)
 
 /datum/reagent/consumable/enzyme
 	name = "Universal Enzyme"

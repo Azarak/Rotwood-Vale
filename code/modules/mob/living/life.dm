@@ -52,10 +52,6 @@
 
 		//Random events (vomiting etc)
 		handle_random_events()
-		//Handle temperature/pressure differences between body and environment
-		var/datum/gas_mixture/environment = loc.return_air()
-		if(environment)
-			handle_environment(environment)
 
 		handle_gravity()
 
@@ -141,10 +137,6 @@
 	else
 		ExtinguishMob()
 		return TRUE //mob was put out, on_fire = FALSE via ExtinguishMob(), no need to update everything down the chain.
-//	var/datum/gas_mixture/G = loc.return_air() // Check if we're standing in an oxygenless environment
-//	if(!G.gases[/datum/gas/oxygen] || G.gases[/datum/gas/oxygen][MOLES] < 1)
-//		ExtinguishMob() //If there's no oxygen in the tile we're on, put out the fire
-//		return TRUE
 	update_fire()
 	var/turf/location = get_turf(src)
 	location.hotspot_expose(700, 50, 1)

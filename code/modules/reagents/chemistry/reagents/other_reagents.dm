@@ -221,10 +221,6 @@
 
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
 	if(hotspot && !isspaceturf(T))
-//		if(T.air)
-//			var/datum/gas_mixture/G = T.air
-//			G.temperature = max(min(G.temperature-(CT*1000),G.temperature/CT),TCMB)
-//			G.react(src)
 		new /obj/effect/temp_visual/small_smoke(T)
 		qdel(hotspot)
 	//fixed

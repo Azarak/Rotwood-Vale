@@ -136,14 +136,12 @@
 
 /obj/machinery/airlock_sensor/process()
 	if(on)
-		var/datum/gas_mixture/air_sample = return_air()
-		var/pressure = round(air_sample.return_pressure(),0.1)
-		alert = (pressure < ONE_ATMOSPHERE*0.8)
+		alert = FALSE
 
 		var/datum/signal/signal = new(list(
 			"tag" = id_tag,
 			"timestamp" = world.time,
-			"pressure" = num2text(pressure)
+			"pressure" = num2text(100)
 		))
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)

@@ -5,7 +5,6 @@
 	anchored = TRUE
 	density = TRUE
 	var/moving = FALSE
-	var/datum/gas_mixture/air_contents = new()
 	var/occupied_icon_state = "pod_occupied"
 
 

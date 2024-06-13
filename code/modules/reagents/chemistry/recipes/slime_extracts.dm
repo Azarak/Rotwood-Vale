@@ -236,11 +236,7 @@
 	M.qdel_timer = addtimer(CALLBACK(src, PROC_REF(delete_extract), holder), 55, TIMER_STOPPABLE)
 
 /datum/chemical_reaction/slime/slimefreeze/proc/freeze(datum/reagents/holder)
-	if(holder && holder.my_atom)
-		var/turf/open/T = get_turf(holder.my_atom)
-		if(istype(T))
-			var/datum/gas/gastype = /datum/gas/nitrogen
-			T.atmos_spawn_air("[initial(gastype.id)]=50;TEMP=2.7")
+	return
 
 /datum/chemical_reaction/slime/slimefireproof
 	name = "Slime Fireproof"

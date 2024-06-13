@@ -122,16 +122,7 @@ GLOBAL_VAR_INIT(mobids, 1)
 	if(!loc)
 		return 0
 
-	var/datum/gas_mixture/environment = loc.return_air()
-
-	var/t =	"<span class='notice'>Coordinates: [x],[y] \n</span>"
-	t +=	"<span class='danger'>Temperature: [environment.temperature] \n</span>"
-	for(var/id in environment.gases)
-		var/gas = environment.gases[id]
-		if(gas[MOLES])
-			t+="<span class='notice'>[gas[GAS_META][META_GAS_NAME]]: [gas[MOLES]] \n</span>"
-
-	to_chat(usr, t)
+	return 0
 
 /**
   * Return the desc of this mob for a photo

@@ -285,12 +285,7 @@
 
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
 	if(hotspot && !isspaceturf(T))
-		if(T.air)
-			var/datum/gas_mixture/G = T.air
-			if(G.temperature > T20C)
-				G.temperature = max(G.temperature/2,T20C)
-			G.react(src)
-			qdel(hotspot)
+		qdel(hotspot)
 
 /datum/reagent/firefighting_foam/reaction_obj(obj/O, reac_volume)
 	O.extinguish()
