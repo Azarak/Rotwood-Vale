@@ -1,4 +1,4 @@
-/proc/priority_announce(text, title = "", sound, type , sender_override)
+/proc/priority_announce(text, title = "", sound, type , sender_override, sound_volume = 100)
 	if(!text)
 		return
 
@@ -31,7 +31,7 @@
 			to_chat(M, announcement)
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
 				if(sound)
-					M.playsound_local(M, s, 100)
+					M.playsound_local(M, s, sound_volume)
 
 /proc/print_command_report(text = "", title = null, announce=TRUE)
 	if(!title)
