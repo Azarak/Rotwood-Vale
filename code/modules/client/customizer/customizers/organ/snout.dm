@@ -74,7 +74,7 @@
 		)
 
 /datum/customizer/organ/snout/anthro
-	allows_disabling = TRUE
+	allows_disabling = FALSE
 	default_disabled = TRUE
 	customizer_choices = list(/datum/customizer_choice/organ/snout/anthro)
 
