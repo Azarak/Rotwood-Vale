@@ -498,6 +498,8 @@ GLOBAL_VAR_INIT(mobids, 1)
 		src.visible_message(span_info("[src] points [I] at [A]."), span_info("I point [I] at [A]."))
 	else
 		src.visible_message(span_info("[src] points at [A]."), span_info("I point at [A]."))
+	SEND_SIGNAL(src, COMSIG_MOB_POINTS_AT, A)
+	SEND_SIGNAL(A, COMSIG_ATOM_POINTED_AT, src)
 
 	return TRUE
 

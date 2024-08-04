@@ -404,3 +404,6 @@
 #define COMSIG_XENO_TURF_CLICK_SHIFT "xeno_turf_click_shift"				//from turf ShiftClickOn(): (/mob)
 #define COMSIG_XENO_TURF_CLICK_CTRL "xeno_turf_click_alt"					//from turf AltClickOn(): (/mob)
 #define COMSIG_XENO_MONKEY_CLICK_CTRL "xeno_monkey_click_ctrl"				//from monkey CtrlClickOn(): (/mob)
+
+#define COMSIG_MOB_POINTS_AT "mob_pointed_to"
+#define COMSIG_ATOM_POINTED_AT "atom_pointed_at"

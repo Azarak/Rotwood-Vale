@@ -1073,6 +1073,7 @@
 #include "code\game\objects\items\chrono_eraser.dm"
 #include "code\game\objects\items\cigs_lighters.dm"
 #include "code\game\objects\items\clown_items.dm"
+#include "code\game\objects\items\control_ring.dm"
 #include "code\game\objects\items\control_wand.dm"
 #include "code\game\objects\items\cosmetics.dm"
 #include "code\game\objects\items\courtroom.dm"
